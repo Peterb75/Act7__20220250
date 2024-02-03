@@ -1,3 +1,4 @@
+import 'package:appstore_exam/imagewid.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -18,28 +19,53 @@ class MyApp extends StatelessWidget {
         primaryColor: Color.fromARGB(255, 208, 200, 200),
       ),
       home: CupertinoPageScaffold(
+        navigationBar: CupertinoNavigationBar(
+          middle:const Row(
+            children: <Widget>[
+              Text("Today",
+              
+              style: TextStyle(
+                fontSize: 30.0, 
+                fontWeight: FontWeight.bold, 
+              ),
+              
+              ),
+              SizedBox(width: 15.0,),
+              Text("February 2",
+              
+              style: TextStyle(
+                color: Color.fromARGB(255, 58, 57, 57) 
+              ),
+              
+              ),
+              SizedBox(width: 250.0,),
+              Icon(CupertinoIcons.circle),
+            ],
+        ),
+ // Puedes personalizar el título aquí
+        ),
         child: CupertinoTabScaffold(
           tabBar: CupertinoTabBar(
             items: const [
               BottomNavigationBarItem(
                 label: 'Today',
-                icon: Icon(CupertinoIcons.clock_solid),
+                icon: Icon(CupertinoIcons.today),
               ),
               BottomNavigationBarItem(
                 label: 'Games',
-                icon: Icon(CupertinoIcons.folder_badge_person_crop),
+                icon: Icon(Icons.games),
               ),
               BottomNavigationBarItem(
                 label: 'Apps',
-                icon: Icon(CupertinoIcons.folder),
+                icon: Icon(Icons.apps),
               ),
               BottomNavigationBarItem(
                 label: 'Arcade',
-                icon: Icon(CupertinoIcons.folder),
+                icon: Icon(Icons.gamepad),
               ),
               BottomNavigationBarItem(
                 label: 'Search',
-                icon: Icon(CupertinoIcons.folder),
+                icon: Icon(CupertinoIcons.search),
               ),
             ],
           ),
@@ -74,17 +100,6 @@ class _PageOneState extends State<PageOne> {
       color: Colors.grey[100],
       child: ListView(
         children: [
-          Row(
-            children: <Widget>[
-              Stack(
-                children: [
-                  Positioned(
-                    child: Text("Today February 2", style: TextStyle(fontSize: 20)),
-                  ),
-                ],
-              ),
-            ],
-          ),
 
           Padding(
             padding: const EdgeInsets.all(10.0),
@@ -127,7 +142,7 @@ class _PageOneState extends State<PageOne> {
                     ],
                   ),
                   // Nuevo texto sobre la imagen
-                  Positioned(
+                  const Positioned(
                     bottom: 90.0,
                     left: 8.0,
                     child: Text(
@@ -136,7 +151,7 @@ class _PageOneState extends State<PageOne> {
                     ),
                   ),
 
-                  Positioned(
+                   const Positioned(
                     bottom: 70.0,
                     left: 8.0,
                     child: Text(
@@ -144,7 +159,7 @@ class _PageOneState extends State<PageOne> {
                       style: TextStyle(fontSize: 16.0, color: Colors.white),
                     ),
                   ),
-                  Positioned(
+                  const Positioned(
                     bottom: 120.0,
                     left: 8.0,
                     child: Text(
@@ -166,7 +181,7 @@ class _PageOneState extends State<PageOne> {
                             color: const Color.fromARGB(255, 80, 80, 80), // Cambia el color de fondo del botón
                             borderRadius: BorderRadius.circular(8.0), // Ajusta el radio de la esquina si es necesario
                           ),
-                          child: TextButton(
+                          child: const TextButton(
                             onPressed: null, // Coloca tu lógica de manejo de clic aquí
                             child: const Text('Get', style: TextStyle(color: Colors.white)),
                           ),
@@ -183,6 +198,8 @@ class _PageOneState extends State<PageOne> {
             ),
           ),
 
+
+Icon(Icons.get_app),
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: Card(
@@ -262,12 +279,18 @@ class _PageOneState extends State<PageOne> {
   }
 }
 
-class PageTwo extends StatelessWidget {
+
+class PageTwo extends StatefulWidget {
   const PageTwo({Key? key}) : super(key: key);
 
   @override
+  _PageTwoState createState() => _PageTwoState();
+}
+
+class _PageTwoState extends State<PageTwo> {
+  @override
   Widget build(BuildContext context) {
-    return const Text("data");
+    return Text("");
   }
 }
 
@@ -293,75 +316,13 @@ class PageFour extends StatelessWidget {
   }
 }
 
+
+
 class PageFive extends StatelessWidget {
   const PageFive({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(10.0),
-      color: Colors.grey[100], // Fondo gris claro
-      child: ListView(
-        children: [
-          Stack(
-            alignment: Alignment.centerRight,
-            children: [
-              CupertinoSearchTextField(
-                placeholder: 'Search',
-                placeholderStyle: const TextStyle(color: Colors.grey),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                onSubmitted: (String value) {
-                  print('Searched for: $value');
-                },
-              ),
-              const Positioned(
-                right: 8.0,
-                child: Icon(
-                  CupertinoIcons.mic,
-                  color: Colors.grey,
-                ),
-              ),
-            ],
-          ),
-
-          CupertinoListSection(
-            header: const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Favorites',
-                  style: TextStyle(fontSize: 20.0, color: Colors.black),
-                ),
-                Icon(
-                  Icons.keyboard_arrow_down,
-                  color: CupertinoColors.activeBlue,
-                ),
-              ],
-            ),
-            children: const <Widget>[
-              CupertinoListTile(
-                title: Text('IcloudDrive'),
-                leading: Icon(
-                  CupertinoIcons.cloud,
-                  color: CupertinoColors.systemBlue,
-                ),
-                trailing: CupertinoListTileChevron(),
-              ),
-              CupertinoListTile(
-                title: Text('On My iPhone'),
-                leading: Icon(
-                  CupertinoIcons.device_phone_portrait,
-                  color: CupertinoColors.systemBlue,
-                ),
-                trailing: CupertinoListTileChevron(),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
+    return a();
   }
 }
